@@ -6,6 +6,33 @@
 
 ---
 
+## 快速开始（Quick Start）
+
+首次接入按下面 6 步走，约 10 分钟：
+
+1. **填配置**：把第 0 节表格里的 `<...>` 占位符替换成本项目实际值。
+2. **建分支**：从基线分支拉特性分支
+   ```bash
+   git checkout <base-branch> && git pull
+   git checkout -b feat/<short-desc>
+   ```
+3. **提交**：小步提交，信息符合第 3 节
+   ```bash
+   git add -A && git commit -m "feat(<scope>): <中文描述>"
+   ```
+4. **自检**：跑类型检查与单元测试，按第 4 节清单逐项确认
+5. **合并**：以 `--no-ff` 合入集成分支，随后删除特性分支
+   ```bash
+   git checkout <integration-branch>
+   git merge --no-ff feat/<short-desc> -m "merge: <integration-branch> ← feat/<short-desc> — <摘要>"
+   git branch -d feat/<short-desc>
+   ```
+6. **发布**：集成分支 → 发布分支 → 打 tag（详见 1.6）
+
+> 多 Agent 并行时，第 2 步改由 Lead 用 `git worktree` 为每个 agent 分配独立工作区（详见第 2 节）。
+
+---
+
 ## 0. 项目配置区（先填这里）
 
 | 配置项 | 占位符 | 本项目取值 | 说明 |
